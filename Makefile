@@ -42,3 +42,7 @@ run:
 # Докер
 .docker-up:
 	@cd dev && docker compose up
+
+# Создание миграций
+migrate-add:
+	goose -dir ./internal/app/migrations create $(name) sql
