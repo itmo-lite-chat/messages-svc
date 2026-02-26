@@ -1,0 +1,66 @@
+run:
+    timeout: 10m
+    issues-exit-code: 1
+    tests: true
+linters:
+    enable:
+      # TODO: golangci ругался на это, пофиксить когда будем линты добавлять
+      # - exportloopref
+      # - gofmt
+      # - gosimple
+      # - goimports
+        - prealloc
+        - dogsled
+        - unconvert
+        - unparam
+        - whitespace
+        - bodyclose
+        - gosec
+        - forcetypeassert
+        - goconst
+        - makezero
+        - sqlclosecheck
+        - errorlint
+        - gocritic
+        - unused
+        - contextcheck
+        - containedctx
+        - errchkjson
+        - errname
+        - funlen
+        - gocheckcompilerdirectives
+        - forbidigo
+        - inamedparam
+        - interfacebloat
+        - perfsprint
+        - prealloc
+        - promlinter
+        - protogetter
+        - wastedassign
+        - rowserrcheck
+        - sqlclosecheck
+        - wrapcheck
+        - nosprintfhostport
+    disable:
+        - testifylint
+linters-settings:
+    gosec:
+        excludes:
+            - G307
+            - G304
+    gocritic:
+        disabled-checks:
+            - ifElseChain
+issues:
+    exclude-dirs:
+        - bin
+        - vendor
+    exclude:
+        - exported func .* returns unexported type .*, which can be annoying to use
+        - should have a package comment
+        - don't use an underscore in package name
+    exclude-files:
+        - \.pb\.go$
+        - \.pb\.validate\.go$
+        - \.mock\.pb\.go$
+version: 2
