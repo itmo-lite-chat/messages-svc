@@ -121,12 +121,6 @@ github.com/ilyakaznacheev/cleanenv v1.5.0 h1:0VNZXggJE2OYdXE87bfSSwGxeiGt9moSR2l
 github.com/ilyakaznacheev/cleanenv v1.5.0/go.mod h1:a5aDzaJrLCQZsazHol1w8InnDcOX0OColm64SlIi6gk=
 github.com/itmo-lite-chat/go-utils v1.0.1 h1:tVmtBIUrr3wd0cQtpB7lj1idrFlPirQUMpk9ovgsMEc=
 github.com/itmo-lite-chat/go-utils v1.0.1/go.mod h1:22OodEGAFOkbQvbhJNJpAgEQAb2yWkDIyKnR1IvOGEI=
-github.com/itmo-lite-chat/proto-registry v1.0.1 h1:Vz2wDDPPhmtOZ3hPpRiKJwkz6Ina6hPqr/6xzQLbXbo=
-github.com/itmo-lite-chat/proto-registry v1.0.1/go.mod h1:OdBB7CWH9rdNXImi+N3+d1YhCUQundV8qaZP5bXe+8U=
-github.com/itmo-lite-chat/proto-registry v1.0.2 h1:3S7WymjXCxqV7i/x5qcKDYQr4W63K4xvnnRA7awnZc4=
-github.com/itmo-lite-chat/proto-registry v1.0.2/go.mod h1:OdBB7CWH9rdNXImi+N3+d1YhCUQundV8qaZP5bXe+8U=
-github.com/itmo-lite-chat/proto-registry v1.0.3 h1:s9znRpuquVEEOU1qM0jiDJOpL0wgGJqJxMl6JiC49q8=
-github.com/itmo-lite-chat/proto-registry v1.0.3/go.mod h1:OdBB7CWH9rdNXImi+N3+d1YhCUQundV8qaZP5bXe+8U=
 github.com/itmo-lite-chat/proto-registry v1.0.4 h1:dvRSEzEL/wjZmlbleOVLuhj+KgEa2ZWfPzxkqvZDv88=
 github.com/itmo-lite-chat/proto-registry v1.0.4/go.mod h1:OdBB7CWH9rdNXImi+N3+d1YhCUQundV8qaZP5bXe+8U=
 github.com/jackc/pgpassfile v1.0.0 h1:/6Hmqy13Ss2zCq62VdNG8tM1wchn8zjSGOBJ6icpsIM=

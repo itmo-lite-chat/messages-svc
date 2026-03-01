@@ -11,6 +11,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0
 	github.com/itmo-lite-chat/go-utils v1.0.1
+	github.com/itmo-lite-chat/proto-registry v1.0.4
 	github.com/pkg/errors v0.9.1
 	go.mongodb.org/mongo-driver v1.11.4
 	go.uber.org/zap v1.27.1
@@ -40,7 +41,6 @@ require (
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/hexdigest/gowrap v1.4.3 // indirect
-	github.com/itmo-lite-chat/proto-registry v1.0.4 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.8.0 // indirect
