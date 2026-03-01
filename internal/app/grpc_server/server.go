@@ -1,3 +1,5 @@
+// internal/app/grpc_server/server.go
+
 package grpcserver
 
 import (
@@ -5,8 +7,11 @@ import (
 	"fmt"
 	"net"
 
+	"github.com/itmo-lite-chat/messages_svc/internal/api/grpc_api"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+
+	pb "github.com/itmo-lite-chat/proto-registry/gen/services/messages_service/messages/v1"
 )
 
 type server struct {
@@ -14,8 +19,12 @@ type server struct {
 	server *grpc.Server
 }
 
-func NewServer(addr string) *server {
+// Теперь функция принимает и адрес, и твой API
+func NewServer(addr string, messagesAPI *grpc_api.API) *server {
 	s := grpc.NewServer()
+
+	// РЕГИСТРАЦИЯ: связываем твой код с gRPC сервером
+	pb.RegisterMessagesServiceServer(s, messagesAPI)
 
 	reflection.Register(s)
 

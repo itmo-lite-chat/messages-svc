@@ -8,9 +8,9 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/itmo-lite-chat/go-template-svc.git/cmd/config"
-	"github.com/itmo-lite-chat/go-template-svc.git/internal/app"
 	"github.com/itmo-lite-chat/go-utils/logger"
+	"github.com/itmo-lite-chat/messages_svc/cmd/config"
+	"github.com/itmo-lite-chat/messages_svc/internal/app"
 )
 
 func main() {

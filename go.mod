@@ -1,4 +1,4 @@
-module github.com/itmo-lite-chat/go-template-svc.git
+module github.com/itmo-lite-chat/messages_svc
 
 go 1.25.5
 
@@ -8,11 +8,11 @@ tool (
 )
 
 require (
-	github.com/doug-martin/goqu/v9 v9.19.0
 	github.com/google/uuid v1.6.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0
 	github.com/itmo-lite-chat/go-utils v1.0.1
 	github.com/pkg/errors v0.9.1
+	go.mongodb.org/mongo-driver v1.11.4
 	go.uber.org/zap v1.27.1
 	golang.org/x/sync v0.19.0
 	google.golang.org/grpc v1.79.1
@@ -38,7 +38,9 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
+	github.com/golang/snappy v0.0.1 // indirect
 	github.com/hexdigest/gowrap v1.4.3 // indirect
+	github.com/itmo-lite-chat/proto-registry v1.0.4 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.8.0 // indirect
@@ -46,11 +48,11 @@ require (
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/jonboulle/clockwork v0.5.0 // indirect
 	github.com/klauspost/compress v1.18.4 // indirect
-	github.com/lib/pq v1.11.2 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mfridman/interpolate v0.0.2 // indirect
 	github.com/mfridman/xflag v0.1.0 // indirect
 	github.com/microsoft/go-mssqldb v1.9.6 // indirect
+	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/ncruces/go-strftime v1.0.0 // indirect
 	github.com/paulmach/orb v0.12.0 // indirect
 	github.com/pierrec/lz4/v4 v4.1.25 // indirect
@@ -64,8 +66,12 @@ require (
 	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/tursodatabase/libsql-client-go v0.0.0-20251219100830-236aa1ff8acc // indirect
 	github.com/vertica/vertica-sql-go v1.3.5 // indirect
+	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
+	github.com/xdg-go/scram v1.1.1 // indirect
+	github.com/xdg-go/stringprep v1.0.3 // indirect
 	github.com/ydb-platform/ydb-go-genproto v0.0.0-20260128080146-c4ed16b24b37 // indirect
 	github.com/ydb-platform/ydb-go-sdk/v3 v3.127.0 // indirect
+	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.opentelemetry.io/otel v1.40.0 // indirect
 	go.opentelemetry.io/otel/trace v1.40.0 // indirect

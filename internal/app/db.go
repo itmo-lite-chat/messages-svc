@@ -2,34 +2,31 @@ package app
 
 import (
 	"context"
-	"embed"
+	"fmt"
 
-	"github.com/doug-martin/goqu/v9"
-	pgdb "github.com/itmo-lite-chat/go-utils/postgres_db"
-	"github.com/pkg/errors"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-//go:embed migrations/*.sql
-var embedMigrations embed.FS
-
-func (a *app) initPostgresDB(ctx context.Context) (*goqu.Database, error) {
-	dbConfig := a.config.DBConfig
-
-	connString := pgdb.GetConnectionString(
-		dbConfig.Username, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name,
-	)
-
-	dbconn, err := pgdb.Connect(ctx, connString, dbConfig.ConnectionTTL, dbConfig.MaxOpenConnections, dbConfig.MaxIdleConnections)
+func (a *app) initMongoDB(ctx context.Context) (*mongo.Database, error) {
+	// Подключаемся к Mongo (путь берем из конфига)
+	mongoURI := fmt.Sprintf("mongodb://%v:%v@%v:%v/%v?authSource=%v",
+		a.config.DBConfig.User, a.config.DBConfig.Password,
+		a.config.DBConfig.Host, a.config.DBConfig.Port, a.config.DBConfig.DB, a.config.DBConfig.User)
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
 	if err != nil {
-		return nil, errors.Wrap(err, "can't connect to pgdb")
-	}
-	a.closer.AddCloseFunc("postgres", dbconn.Close)
-
-	if a.config.DBConfig.ApplyMigration {
-		if err := pgdb.ApplyMigrations(ctx, dbconn, embedMigrations); err != nil {
-			return nil, errors.Wrap(err, "can't apply migrations")
-		}
+		return nil, err
 	}
 
-	return goqu.New("postgres", dbconn), nil
+	// Проверяем соединение
+	if err := client.Ping(ctx, nil); err != nil {
+		return nil, err
+	}
+
+	// РЕГИСТРИРУЕМ ЗАКРЫТИЕ В CLOZER
+	a.closer.AddCloseFunc("mongo", func() error {
+		return client.Disconnect(context.Background())
+	})
+
+	return client.Database(a.config.DBConfig.DB), nil
 }

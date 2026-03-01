@@ -1,6 +1,8 @@
 package config
 
 import (
+	"time"
+
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/pkg/errors"
 )
@@ -10,7 +12,7 @@ type Config struct {
 
 	GrpcServer grpcServer
 
-	DBConfig dbConfig
+	DBConfig mongoConfig
 }
 
 type grpcServer struct {
@@ -19,18 +21,16 @@ type grpcServer struct {
 }
 
 // DBConfig настройки базы данных
-type dbConfig struct {
-	Host     string `env:"POSTGRES_HOST"     env-required:"true"`
-	Port     int    `env:"POSTGRES_PORT"     env-required:"true"`
-	Name     string `env:"POSTGRES_DB"       env-required:"true"`
-	Username string `env:"POSTGRES_USER"     env-required:"true"`
-	Password string `env:"POSTGRES_PASSWORD" env-required:"true"`
+type mongoConfig struct {
+	Host     string `env:"MONGO_HOST"     env-required:"true"`
+	Port     int    `env:"MONGO_PORT"     env-required:"true"`
+	DB       string `env:"MONGO_DB"       env-required:"true"`
+	User     string `env:"MONGO_USER"     env-required:"true"`
+	Password string `env:"MONGO_PASSWORD" env-required:"true"`
 
-	ApplyMigration bool `env:"APPLY_MIGRATION" env-required:"true"`
-
-	ConnectionTTL      int `env:"POSTGRES_CONN_TTL"      env-required:"true"`
-	MaxOpenConnections int `env:"POSTGRES_MAX_OPEN_CONN" env-required:"true"`
-	MaxIdleConnections int `env:"POSTGRES_MAX_IDLE_CONN" env-required:"true"`
+	MongoMaxPoolSize int           `env:"MONGO_MAX_POOL_SIZE" env-required:"true"`
+	MongoMinPoolSize int           `env:"MONGO_MIN_POOL_SIZE" env-required:"true"`
+	MongoConnTimeout time.Duration `env:"MONGO_CONN_TIMEOUT"  env-required:"true"`
 }
 
 func NewConfig() (*Config, error) {

@@ -4,10 +4,13 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/itmo-lite-chat/go-template-svc.git/cmd/config"
-	grpcserver "github.com/itmo-lite-chat/go-template-svc.git/internal/app/grpc_server"
 	"github.com/itmo-lite-chat/go-utils/closer"
 	"github.com/itmo-lite-chat/go-utils/logger"
+	"github.com/itmo-lite-chat/messages_svc/cmd/config"
+	"github.com/itmo-lite-chat/messages_svc/internal/api/grpc_api"
+	grpcserver "github.com/itmo-lite-chat/messages_svc/internal/app/grpc_server"
+	service "github.com/itmo-lite-chat/messages_svc/internal/services/messages_service"
+	storage "github.com/itmo-lite-chat/messages_svc/internal/storage/messages_storage"
 
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
@@ -23,6 +26,7 @@ type app struct {
 	grpcServer Server
 	cancel     context.CancelFunc
 	closer     *closer.Closer
+	serviceAPI *grpc_api.API
 }
 
 func NewApp(cfg *config.Config) *app {
@@ -47,18 +51,26 @@ func (a *app) Run(c context.Context) error {
 		}
 	})
 
-	_, err := a.initPostgresDB(ctx)
+	// 1. Инициализируем только базу (Mongo)
+	db, err := a.initMongoDB(ctx)
 	if err != nil {
-		return errors.Wrap(err, "can't init PostgresDB")
+		return errors.Wrap(err, "can't init MongoDB")
 	}
 
-	eg, ctx := errgroup.WithContext(c)
+	// 2. Создаем Storage
+	msgStorage := storage.NewStorage(db)
 
+	// 3. Создаем Service без реалтайм-клиента
+	msgService := service.NewService(msgStorage)
+
+	// 4. Передаем сервис в gRPC хендлер
+	a.serviceAPI = grpc_api.NewAPI(msgService)
+
+	eg, ctx := errgroup.WithContext(ctx)
 	eg.Go(func() error {
 		defer a.cancel()
 		return a.startGRPCServer(ctx)
 	})
-
 	logger.Info(ctx, "сервер поднялся")
 
 	if err := eg.Wait(); err != nil {
@@ -69,12 +81,14 @@ func (a *app) Run(c context.Context) error {
 
 func (a *app) GracefulShutdown(ctx context.Context) error {
 	var err error
-	if err = a.grpcServer.Shutdown(ctx); err != nil {
-		err = errors.Wrap(err, "can't shutdown grpc server")
+	if a.grpcServer != nil {
+		if err = a.grpcServer.Shutdown(ctx); err != nil {
+			err = errors.Wrap(err, "can't shutdown grpc server")
+		}
 	}
 
-	if err = a.closer.Close(); err != nil {
-		err = errors.Wrap(err, "can't close all connections")
+	if closerErr := a.closer.Close(); closerErr != nil {
+		err = errors.Wrap(closerErr, "can't close all connections")
 	}
 
 	return err
@@ -88,13 +102,11 @@ func (a *app) startGRPCServer(ctx context.Context) error {
 	}()
 
 	addr := fmt.Sprintf("%s:%d", a.config.GrpcServer.Host, a.config.GrpcServer.Port)
-	s := grpcserver.NewServer(addr)
+	a.grpcServer = grpcserver.NewServer(addr, a.serviceAPI)
 	logger.Debug(
 		ctx, "gRPC server started",
 		"addr", addr,
 	)
-
-	a.grpcServer = s
 
 	if err := a.grpcServer.Run(ctx); err != nil {
 		return fmt.Errorf("grpc server is shutdown: %w", err)
