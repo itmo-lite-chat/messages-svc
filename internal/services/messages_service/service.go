@@ -81,6 +81,19 @@ func (s *MessageService) EditMessage(ctx context.Context, msgID int64, senderID 
 }
 
 func (s *MessageService) DeleteMessage(ctx context.Context, msgID int64, userID string) error {
+	userUUID, err := uuid.Parse(userID)
+	if err != nil {
+		return err
+	}
+
+	msg, err := s.storage.GetByID(ctx, msgID)
+	if err != nil {
+		return err
+	}
+	if msg.SenderID != userUUID {
+		return fmt.Errorf("permission denied")
+	}
+
 	update := bson.M{
 		"$set": bson.M{"deleted_at": time.Now()},
 	}
