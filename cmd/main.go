@@ -42,7 +42,6 @@ func main() {
 	logger.Info(ctx, "application is shutdown normally")
 }
 
-// обработчик сигналов системы
 func signalHandler(ctx context.Context, cancelFunc context.CancelFunc) {
 	osSigCh := make(chan os.Signal, 1)
 

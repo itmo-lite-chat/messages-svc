@@ -51,19 +51,15 @@ func (a *app) Run(c context.Context) error {
 		}
 	})
 
-	// 1. Инициализируем только базу (Mongo)
 	db, err := a.initMongoDB(ctx)
 	if err != nil {
 		return errors.Wrap(err, "can't init MongoDB")
 	}
 
-	// 2. Создаем Storage
 	msgStorage := storage.NewStorage(db)
 
-	// 3. Создаем Service без реалтайм-клиента
 	msgService := service.NewService(msgStorage)
 
-	// 4. Передаем сервис в gRPC хендлер
 	a.serviceAPI = grpc_api.NewAPI(msgService)
 
 	eg, ctx := errgroup.WithContext(ctx)
