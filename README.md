@@ -1,4 +1,12 @@
-# service-template
+# messages-svc
+
+gRPC service for lite-chat messages.
+
+## Run
+
+```bash
+env $(cat dev/.env | xargs) go run ./cmd
+```
 
 ## New migration
 ```go
