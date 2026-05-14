@@ -10,7 +10,7 @@ type Metadata struct {
 }
 
 type Content struct {
-	Type     ContentType `json:"type" bson:"type"` // t, i, f, s
+	Type     ContentType `json:"type" bson:"type"`
 	Body     string      `json:"body" bson:"body"`
 	Metadata Metadata    `json:"metadata" bson:"metadata"`
 }

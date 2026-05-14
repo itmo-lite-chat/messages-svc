@@ -20,7 +20,6 @@ type grpcServer struct {
 	Port int    `env:"GRPC_PORT" env-default:"9999"`
 }
 
-// DBConfig настройки базы данных
 type mongoConfig struct {
 	Host     string `env:"MONGO_HOST"     env-required:"true"`
 	Port     int    `env:"MONGO_PORT"     env-required:"true"`

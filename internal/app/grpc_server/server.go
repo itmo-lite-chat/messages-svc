@@ -1,5 +1,3 @@
-// internal/app/grpc_server/server.go
-
 package grpcserver
 
 import (
@@ -19,11 +17,9 @@ type server struct {
 	server *grpc.Server
 }
 
-// Теперь функция принимает и адрес, и твой API
 func NewServer(addr string, messagesAPI *grpc_api.API) *server {
 	s := grpc.NewServer()
 
-	// РЕГИСТРАЦИЯ: связываем твой код с gRPC сервером
 	pb.RegisterMessagesServiceServer(s, messagesAPI)
 
 	reflection.Register(s)

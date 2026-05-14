@@ -26,6 +26,8 @@ github.com/andybalholm/brotli v1.2.0/go.mod h1:rzTDkvFWvIrjDXZHkuS16NPggd91W3kUS
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
 github.com/antlr4-go/antlr/v4 v4.13.1 h1:SqQKkuVZ+zWkMMNkjy5FZe5mr5WURWnlpmOuzYWrPrQ=
 github.com/antlr4-go/antlr/v4 v4.13.1/go.mod h1:GKmUxMtwp6ZgGwZSva4eWPC5mS6vUAmOABFgjdkM7Nw=
+github.com/bwmarrin/snowflake v0.3.0 h1:xm67bEhkKh6ij1790JB83OujPR5CzNe8QuQqAgISZN0=
+github.com/bwmarrin/snowflake v0.3.0/go.mod h1:NdZxfVWX+oR6y2K0o6qAYv6gIOP9rjG0/E9WsDpxqwE=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/cespare/xxhash/v2 v2.1.1/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
@@ -121,8 +123,8 @@ github.com/ilyakaznacheev/cleanenv v1.5.0 h1:0VNZXggJE2OYdXE87bfSSwGxeiGt9moSR2l
 github.com/ilyakaznacheev/cleanenv v1.5.0/go.mod h1:a5aDzaJrLCQZsazHol1w8InnDcOX0OColm64SlIi6gk=
 github.com/itmo-lite-chat/go-utils v1.0.1 h1:tVmtBIUrr3wd0cQtpB7lj1idrFlPirQUMpk9ovgsMEc=
 github.com/itmo-lite-chat/go-utils v1.0.1/go.mod h1:22OodEGAFOkbQvbhJNJpAgEQAb2yWkDIyKnR1IvOGEI=
-github.com/itmo-lite-chat/proto-registry v1.0.4 h1:dvRSEzEL/wjZmlbleOVLuhj+KgEa2ZWfPzxkqvZDv88=
-github.com/itmo-lite-chat/proto-registry v1.0.4/go.mod h1:OdBB7CWH9rdNXImi+N3+d1YhCUQundV8qaZP5bXe+8U=
+github.com/itmo-lite-chat/proto-registry v1.1.0 h1:Eee78vYJtIuL8cHc3gjKpxLpNLmP9zFyDsY3j+k2Zhk=
+github.com/itmo-lite-chat/proto-registry v1.1.0/go.mod h1:OdBB7CWH9rdNXImi+N3+d1YhCUQundV8qaZP5bXe+8U=
 github.com/jackc/pgpassfile v1.0.0 h1:/6Hmqy13Ss2zCq62VdNG8tM1wchn8zjSGOBJ6icpsIM=
 github.com/jackc/pgpassfile v1.0.0/go.mod h1:CEx0iS5ambNFdcRtxPj5JhEz+xB6uRky5eyVu/W2HEg=
 github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 h1:iCEnooe7UlwOQYpKFhBabPMi4aNAfoODPEFNiAnClxo=

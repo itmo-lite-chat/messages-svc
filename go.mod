@@ -8,15 +8,17 @@ tool (
 )
 
 require (
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/google/uuid v1.6.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0
 	github.com/itmo-lite-chat/go-utils v1.0.1
-	github.com/itmo-lite-chat/proto-registry v1.0.4
+	github.com/itmo-lite-chat/proto-registry v1.1.0
 	github.com/pkg/errors v0.9.1
 	go.mongodb.org/mongo-driver v1.11.4
 	go.uber.org/zap v1.27.1
 	golang.org/x/sync v0.19.0
 	google.golang.org/grpc v1.79.1
+	google.golang.org/protobuf v1.36.11
 )
 
 require (
@@ -85,7 +87,6 @@ require (
 	golang.org/x/text v0.34.0 // indirect
 	golang.org/x/tools v0.42.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260217215200-42d3e9bedb6d // indirect
-	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	howett.net/plist v1.0.1 // indirect
 	modernc.org/libc v1.68.0 // indirect

@@ -35,8 +35,10 @@ go.work.sum
 
 # docker volumes
 dev/pgdata/
+dev/mongodata/
 dev/kafkadata/
 dev/s3data/
 dev/prometheusdata/
 dev/grafanadata/
 dev/redisdata/
+tmp/
